@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Day 1 Session Report: Web Foundations &amp; Git</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f6f5f1;--surface:#fff;--ink:#16203a;--muted:#5b6478;--line:#e2e0d8;--a:#1e3a8a;--b:#e8833a;--soft:#e9eefb;--code:#101828;--codeink:#e5e9f5}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1424;--surface:#161e33;--ink:#e8ecf7;--muted:#9aa5c0;--line:#27314d;--a:#8fb0ff;--b:#f2994a;--soft:#1d2845;--code:#0a0f1d;--codeink:#e5e9f5}}
+:root[data-theme="dark"]{--bg:#0e1424;--surface:#161e33;--ink:#e8ecf7;--muted:#9aa5c0;--line:#27314d;--a:#8fb0ff;--b:#f2994a;--soft:#1d2845;--code:#0a0f1d;--codeink:#e5e9f5}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+.w{width:92%;max-width:1040px;margin:0 auto}
+.hero{background:linear-gradient(135deg,#1e3a8a,#3b2f8f 60%,#7a3b8f);color:#fff;padding:64px 0 56px}
+.hero .tag{display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:rgba(255,255,255,.16);padding:5px 12px;border-radius:99px}
+.hero h1{font-size:clamp(30px,5vw,52px);line-height:1.1;margin:18px 0 12px;letter-spacing:-.02em}
+.hero p{max-width:640px;color:#dfe5ff;margin:0}
+.stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.stats span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:8px 14px;border-radius:10px;font-size:14px}
+.stats b{font-size:20px;display:block}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+nav .w{display:flex;gap:6px;overflow-x:auto;padding:10px 0}
+nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:14px;padding:6px 12px;border-radius:99px}
+nav a:hover{background:var(--soft);color:var(--a)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--surface);z-index:10}
+section{padding:48px 0 8px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--b);font-weight:700}
+h2{font-size:clamp(24px,3.4vw,34px);margin:6px 0 10px;letter-spacing:-.01em}
+h3{margin:0 0 6px;font-size:18px}
+.lede{color:var(--muted);max-width:720px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-top:22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.pill{display:inline-block;font-size:12px;font-weight:700;background:var(--soft);color:var(--a);padding:3px 10px;border-radius:99px;margin-bottom:10px}
+.table-wrap{overflow-x:auto;margin-top:22px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;padding:11px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--soft);color:var(--a);font-size:13px;text-transform:uppercase;letter-spacing:.06em}
+tr:last-child td{border-bottom:0}
+code{font-family:ui-monospace,Consolas,monospace;font-size:.88em;background:var(--soft);color:var(--a);padding:1px 6px;border-radius:5px}
+pre{background:var(--code);color:var(--codeink);border-radius:12px;padding:16px 18px;overflow-x:auto;font:13.5px/1.6 ui-monospace,Consolas,monospace;margin:16px 0 0}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:22px}
+.flow div{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--a);border-radius:10px;padding:12px 16px;font-weight:600}
+.flow div small{display:block;color:var(--muted);font-weight:400;font-size:12px}
+.flow i{font-style:normal;color:var(--b);font-weight:700;font-size:13px}
+.take{background:var(--soft);border-radius:16px;padding:24px;margin-top:28px}
+.take ol{margin:10px 0 0;padding-left:22px}.take li{margin:6px 0}
+.callout{border-left:4px solid var(--b);background:var(--surface);border-radius:0 12px 12px 0;padding:14px 18px;margin-top:20px;color:var(--muted);font-size:15px}
+.callout b{color:var(--ink)}
+footer{margin-top:56px;padding:28px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px;text-align:center}
+</style>
+</head>
+<body>
+<header class="hero"><div class="w">
+  <span class="tag">Day 1 · Session Report</span>
+  <h1>Web Foundations &amp; Git, from the inside out</h1>
+  <p>A summary of the two sessions: building and styling a responsive web page, then learning how Git tracks, branches and merges that work.</p>
+  <div class="stats"><span><b>2</b>sessions</span><span><b>13</b>frontend demos</span><span><b>15</b>guided Git lab steps</span><span><b>8</b>Git chapters</span></div>
+</div></header>
+<nav><div class="w"><a href="#overview">Overview</a><a href="#s1">Session 1 · Frontend</a><a href="#css">CSS &amp; layout</a><a href="#portfolio">Portfolio</a><a href="#s2">Session 2 · Git</a><a href="#lab">The lab</a><a href="#takeaways">Takeaways</a></div></nav>
+
+<main class="w">
+<section id="overview">
+  <p class="eyebrow">At a glance</p><h2>How the day fits together</h2>
+  <p class="lede">Session 1 produces a finished student portfolio website. Session 2 teaches Git, the tool that saves every version of that project and lets you experiment safely.</p>
+  <div class="flow">
+    <div>Session 1<small>HTML · CSS · Responsive</small></div><i>→</i>
+    <div>Portfolio site<small>the deliverable</small></div><i>→</i>
+    <div>Session 2<small>Git &amp; version control</small></div><i>→</i>
+    <div>GitHub<small>share &amp; exhibit</small></div>
+  </div>
+</section>
+
+<section id="s1">
+  <p class="eyebrow">Session 1</p><h2>Frontend foundations</h2>
+  <p class="lede">Thirteen small demo pages, each with “TRY THIS” comments: change one line, save, refresh, and see the result immediately.</p>
+  <div class="grid">
+    <div class="card"><span class="pill">Skeleton</span><h3>HTML</h3><p>Decides <i>what</i> is on the page: headings, paragraphs, lists, tables, images, links and forms.</p></div>
+    <div class="card"><span class="pill">Skin</span><h3>CSS</h3><p>Decides how the page <i>looks</i>: colour, spacing, fonts and layout.</p></div>
+    <div class="card"><span class="pill">Brain</span><h3>JavaScript</h3><p>Decides what the page <i>does</i>. Demo: an <code>onclick</code> that pops up an alert.</p></div>
+  </div>
+
+  <h3 style="margin-top:34px">HTML topics</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Topic</th><th>What was covered</th></tr>
+    <tr><td>Core elements</td><td><code>h1</code>–<code>h2</code>, <code>p</code>, <code>img</code> (with <code>alt</code>), <code>ul</code>/<code>ol</code>, <code>table</code>, <code>a</code></td></tr>
+    <tr><td>Semantic tags</td><td><code>header</code>, <code>nav</code>, <code>main</code>, <code>section</code>, <code>footer</code>: tags that describe meaning, not just looks</td></tr>
+    <tr><td>Forms</td><td><code>label for</code> + <code>input id</code> must match; <code>type="email"</code> validates automatically; <code>required</code>, number <code>min/max</code>, password, select, radio (one choice), checkbox (many)</td></tr>
+  </table></div>
+</section>
+
+<section id="css">
+  <p class="eyebrow">Session 1 · CSS</p><h2>Styling and layout</h2>
+  <div class="table-wrap"><table>
+    <tr><th>Concept</th><th>Key idea</th></tr>
+    <tr><td>Three ways to add CSS</td><td>Inline (on the tag), internal (<code>&lt;style&gt;</code>), external (<code>&lt;link&gt;</code> to a .css file). External is best: one file styles many pages.</td></tr>
+    <tr><td>Selectors</td><td>Element (<code>p</code>), class (<code>.highlight</code>), id (<code>#title</code>), descendant (<code>.box p</code>), pseudo-class (<code>a:hover</code>)</td></tr>
+    <tr><td>Specificity</td><td>inline &gt; <code>#id</code> &gt; <code>.class</code> &gt; element. Equal strength: the rule written last wins.</td></tr>
+    <tr><td>Box model</td><td>content + padding + border + margin. <code>box-sizing: border-box</code> makes width include padding and border (300px stays 300px, not 350px).</td></tr>
+    <tr><td>Flexbox</td><td>Style the parent, children move. <code>justify-content</code> (main axis), <code>align-items</code> (cross axis), <code>flex-direction</code>, <code>gap</code>.</td></tr>
+    <tr><td>Responsive design</td><td>Mobile-first default styles plus <code>@media (min-width: 768px)</code>; the viewport meta tag is required for phones.</td></tr>
+    <tr><td>display &amp; position</td><td><code>display:none</code> removes the box and its space; <code>visibility:hidden</code> keeps the space. <code>relative</code> shifts from its normal spot; <code>absolute</code> sticks to the nearest positioned parent.</td></tr>
+    <tr><td>Grid vs Flexbox</td><td>Flexbox for one direction (navbars, button rows, cards). Grid for rows and columns (galleries, page layouts).</td></tr>
+    <tr><td>Bootstrap</td><td>Ready-made CSS loaded from a CDN; class names such as <code>btn btn-primary</code> and <code>col-md-4</code> do the styling.</td></tr>
+  </table></div>
+  <pre>/* Mobile first, then enhance for laptops */
+.cards { display:flex; flex-direction:column; gap:10px; }
+@media (min-width:768px) { .cards { flex-direction:row; } }</pre>
+  <div class="callout"><b>Spot the bug exercise.</b> Four hidden mistakes: a <code>&lt;link&gt;</code> to a missing CSS file (404), an anchor <code>#Projects</code> that doesn’t match <code>id="projects"</code> (ids are case-sensitive), an image with no <code>alt</code>, and a <code>label for="mail"</code> that doesn’t match <code>id="email"</code>.</div>
+</section>
+
+<section id="portfolio">
+  <p class="eyebrow">Session 1 · Deliverable</p><h2>The finished portfolio</h2>
+  <p class="lede">Every concept above is used in one real page: a responsive student portfolio.</p>
+  <div class="grid">
+    <div class="card"><h3>Structure</h3><p>Semantic header, nav, sections for About, Skills, Projects and Contact, plus a footer.</p></div>
+    <div class="card"><h3>Layout</h3><p>Flexbox hero and project cards that wrap; header stacks on phones and goes in a row from 768px.</p></div>
+    <div class="card"><h3>Details</h3><p>Hover effects, a skills table, a validated contact form and accessible <code>alt</code> text.</p></div>
+  </div>
+</section>
+
+<section id="s2">
+  <p class="eyebrow">Session 2</p><h2>Git, from the inside out</h2>
+  <p class="lede">An interactive simulator that teaches how Git works: three places files live, the hidden <code>.git</code> folder, and the objects inside it. It runs entirely in the browser, and can also watch a real folder live.</p>
+  <div class="flow">
+    <div>Working directory<small>edit files here</small></div><i>git add →</i>
+    <div>Staging area<small>pick the next commit</small></div><i>git commit →</i>
+    <div>Local repository<small>permanent history</small></div><i>git push →</i>
+    <div>GitHub<small>shared remote</small></div>
+  </div>
+  <div class="callout"><b>Git ≠ GitHub.</b> Git is the version-control tool on your computer and works offline. GitHub is a website that hosts copies of Git repositories.</div>
+
+  <h3 style="margin-top:34px">The eight chapters</h3>
+  <div class="grid">
+    <div class="card"><span class="pill">1</span><h3>The problem</h3><p>Ends the <code>project_final_REAL</code> habit: history, undo and collaboration. Git is distributed: every copy has the full history.</p></div>
+    <div class="card"><span class="pill">2</span><h3>Three places</h3><p>Working directory, index, repository. Most commands just copy data from one area to the next.</p></div>
+    <div class="card"><span class="pill">3</span><h3>Inside .git</h3><p><code>HEAD</code>, <code>config</code>, <code>index</code>, <code>objects/</code>, <code>refs/</code>, <code>logs/</code>. Delete it and the history is gone.</p></div>
+    <div class="card"><span class="pill">4</span><h3>Objects</h3><p>Blob (file), tree (folder), commit (snapshot), tag. Names are SHA-1 hashes of content, so history can’t be changed quietly.</p></div>
+    <div class="card"><span class="pill">5</span><h3>Branches &amp; HEAD</h3><p>A branch is just a tiny file holding a commit hash. Merges are fast-forward, three-way, or conflicted.</p></div>
+    <div class="card"><span class="pill">6</span><h3>Undo</h3><p><code>restore --staged</code> and <code>reset</code> are safe; <code>restore</code> and <code>clean</code> destroy uncommitted work. Use <code>git clean -nd</code> first.</p></div>
+    <div class="card"><span class="pill">7</span><h3>.gitignore</h3><p>Ignore secrets, <code>node_modules/</code> and logs. It can’t untrack a committed file: use <code>git rm --cached</code>.</p></div>
+    <div class="card"><span class="pill">8</span><h3>Remotes</h3><p><code>clone</code>, <code>push</code>, <code>fetch</code>, <code>pull</code> (= fetch + merge). Only sharing needs a network.</p></div>
+  </div>
+</section>
+
+<section id="lab">
+  <p class="eyebrow">Session 2 · Hands-on</p><h2>The guided lab and commands</h2>
+  <p class="lede">The lab has 15 steps plus 5 optional extras (look inside <code>.git</code>, hash by hand, real merge commit, resolve a conflict, undo safely). The core workflow:</p>
+  <pre>git init                       # create the repository
+git status                     # what changed?
+git add .                      # stage everything
+git commit -m "First commit"   # save a snapshot
+git log --oneline              # read the history
+git branch feature             # create a branch
+git checkout feature           # switch to it (or: git switch)
+git commit -am "Dark theme"    # commit on the branch
+git checkout main
+git merge feature              # bring the work into main</pre>
+  <div class="table-wrap"><table>
+    <tr><th>Merge outcome</th><th>When it happens</th></tr>
+    <tr><td>Fast-forward</td><td>main has no new commits; the pointer just slides forward, no new commit.</td></tr>
+    <tr><td>Merge commit</td><td>Both branches have new work; Git creates a commit with two parents.</td></tr>
+    <tr><td>Conflict</td><td>Same lines changed on both. Edit between <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>, then <code>git add</code> and <code>git commit</code> (or <code>git merge --abort</code>).</td></tr>
+  </table></div>
+  <div class="callout"><b>Simulator extras.</b> “What just happened” explains each command, “Live repo” mirrors a real folder as you type in cmd, and Practice has a quick quiz with 10 exercises. Real push/pull aren’t simulated: they are covered in the steps for GitHub.</div>
+</section>
+
+<section id="takeaways">
+  <p class="eyebrow">Wrap-up</p><h2>Key takeaways</h2>
+  <div class="take"><ol>
+    <li>HTML is the skeleton, CSS the skin, JavaScript the brain.</li>
+    <li>Use semantic tags, matching <code>label</code>/<code>id</code> pairs and <code>alt</code> text: they affect accessibility and correctness.</li>
+    <li>Write mobile-first CSS and add media queries; use Flexbox for one direction, Grid for two.</li>
+    <li>A commit is a snapshot of the whole project, not a list of edits.</li>
+    <li>Files travel working directory → staging → repository; commit small and often with clear messages.</li>
+    <li>Branches are cheap, so experiment freely and merge when it works. A conflict is normal, not an error.</li>
+    <li>Know which undo commands are safe, and never commit secrets: add <code>.gitignore</code> before the first <code>git add .</code>.</li>
+  </ol></div>
+</section>
+</main>
+<footer>Day 1 · Web Foundations &amp; Git · Report generated from the session materials</footer>
+</body>
+</html>
