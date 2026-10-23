@@ -184,8 +184,14 @@ const clk=new T.Clock(),V=new T.Vector3();
  for(let i=BP.length-1;i>=0;i--){const m=BP[i],u=m.userData;u.v.y-=12*dt;m.position.addScaledVector(u.v,dt);u.l-=dt*1.1;m.scale.setScalar(Math.max(.001,u.l));if(u.l<=0){S.remove(m);m.material.dispose();BP.splice(i,1)}}
  R.render(S,cam)})();
 });
-</script><div style="text-align:center;padding:24px;">
-  <a href="report.html">Day 1 Report</a> |
-  <a href="clg_portf.html">Aether Institute</a>
-</div>
+</script>   <style>
+   .xl{position:fixed;right:5vw;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);z-index:40;display:flex;gap:10px}
+   .xl a{font:500 13px 'DM Sans',sans-serif;color:#fff;text-decoration:none;padding:9px 16px;border-radius:99px;background:rgba(30,20,62,.66);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(14px)}
+   .xl a:hover{background:#fff;color:#1b1b3a}
+   @media(max-width:900px){.xl{bottom:auto;top:calc(env(safe-area-inset-top,0px) + 70px);left:50%;right:auto;transform:translateX(-50%)}}
+   </style>
+   <div class="xl">
+     <a href="report.html">Day 1 Report</a>
+     <a href="clg_portf.html">Aether Institute</a>
+   </div>
 </body></html>
